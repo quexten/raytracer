@@ -13,7 +13,7 @@ use crate::{
 };
 
 const MAX_DEPTH: u32 = 10;
-const THREADS: usize = 8;
+const THREADS: usize = 16;
 
 pub struct Camera {
     pub image_width: u32,
@@ -189,12 +189,7 @@ fn ray_color(ray: &ray::Ray, hitables: &HitableList, depth: u32) -> Vec3 {
         return color;
     }
 
-    let t = 0.5 * (-ray.direction.y + 1.0);
-    let white = Vec3::new(0.2, 0.2, 0.2);
-    white
-        .multiply(t)
-        .add(&Vec3::new(0.6, 0.8, 1.0).multiply(1.0 - t))
-        .multiply(0.2)
+    Vec3::new(0.0, 0.0, 0.0)
 }
 
 fn handle_material(
