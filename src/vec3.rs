@@ -44,7 +44,7 @@ impl Vec3 {
         }
     }
 
-    pub fn length (&self) -> f32 {
+    pub fn length(&self) -> f32 {
         (self.x * self.x + self.y * self.y + self.z * self.z).sqrt()
     }
 
@@ -66,11 +66,7 @@ impl Vec3 {
 
     pub fn normalize(&self) -> Vec3 {
         let len = self.length();
-        if len > 0.0 {
-            self.divide(len)
-        } else {
-            *self
-        }
+        if len > 0.0 { self.divide(len) } else { *self }
     }
 
     pub fn random_range(min: f32, max: f32) -> Vec3 {
@@ -84,7 +80,7 @@ impl Vec3 {
     pub fn random_unit() -> Vec3 {
         loop {
             let p = Vec3::random_range(-1.0, 1.0);
-            if p.length_squared() < 1.0  && p.length_squared() > 0.00000001 {
+            if p.length_squared() < 1.0 && p.length_squared() > 0.00000001 {
                 return p.normalize();
             }
         }

@@ -25,7 +25,12 @@ impl HitableList {
 }
 
 impl Hitable for HitableList {
-    fn hit(&self, ray: &crate::ray::Ray, t_min: f32, t_max: f32) -> Option<crate::hitable::HitRecord> {
+    fn hit(
+        &self,
+        ray: &crate::ray::Ray,
+        t_min: f32,
+        t_max: f32,
+    ) -> Option<crate::hitable::HitRecord> {
         let mut closest_so_far = t_max;
         let mut hit_record: Option<crate::hitable::HitRecord> = None;
 

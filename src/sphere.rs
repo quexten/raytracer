@@ -1,4 +1,9 @@
-use crate::{hitable::{HitRecord, Hitable}, material::Material, ray::{self, Ray}, vec3::Vec3};
+use crate::{
+    hitable::{HitRecord, Hitable},
+    material::Material,
+    ray::{self, Ray},
+    vec3::Vec3,
+};
 
 #[derive(Debug, Clone)]
 pub struct Sphere {
@@ -9,7 +14,11 @@ pub struct Sphere {
 
 impl Sphere {
     pub fn new(center: Vec3, radius: f32, material: Material) -> Self {
-        Sphere { center, radius, material }
+        Sphere {
+            center,
+            radius,
+            material,
+        }
     }
 }
 
@@ -21,7 +30,7 @@ impl Hitable for Sphere {
         }
         let point = ray.at(t);
         let normal = point.sub(&self.center).divide(self.radius);
-        Some(HitRecord { 
+        Some(HitRecord {
             t,
             point,
             front_face: ray.direction.dot(&normal) < 0.0,

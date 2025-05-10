@@ -1,4 +1,9 @@
-use crate::{hitable_list::{self, HitableList}, material::{self, Material}, sphere, triangle, vec3::Vec3};
+use crate::{
+    hitable_list::{self, HitableList},
+    material::{self, Material},
+    sphere, triangle,
+    vec3::Vec3,
+};
 
 pub fn create_scene() -> (HitableList, f32) {
     let mut world = hitable_list::HitableList::new();
@@ -20,12 +25,22 @@ pub fn create_scene() -> (HitableList, f32) {
         }),
     )));
 
-
-    fn add_parallelogram(hitables: &mut HitableList, a: Vec3, b: Vec3, c: Vec3, material: Material) {
+    fn add_parallelogram(
+        hitables: &mut HitableList,
+        a: Vec3,
+        b: Vec3,
+        c: Vec3,
+        material: Material,
+    ) {
         hitables.add(Box::new(triangle::Triangle::new(a, b, c, material.clone())));
-        hitables.add(Box::new(triangle::Triangle::new(a, c, c.add(&a.sub(&b)), material)));
+        hitables.add(Box::new(triangle::Triangle::new(
+            a,
+            c,
+            c.add(&a.sub(&b)),
+            material,
+        )));
     }
-    
+
     add_parallelogram(
         &mut world,
         Vec3::new(-1.0, -0.5, -2.0),
