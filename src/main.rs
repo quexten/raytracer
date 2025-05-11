@@ -14,26 +14,32 @@ mod ray;
 mod scene1;
 mod scene2;
 mod scene3;
+mod scene4;
 mod sphere;
 mod triangle;
 mod util;
 mod vec3;
 
 fn main() {
-    let (world, flen) = scene1::create_scene();
-    let camera = camera::Camera::new(flen, 1000, 1000);
-    let image = camera.render(&world);
-    encode_png(image.clone(), "scene1.png");
+    // let (world, flen) = scene1::create_scene();
+    // let camera = camera::Camera::new(flen, 1000, 1000);
+    // let image = camera.render(&world);
+    // encode_png(image.clone(), "scene1.png");
 
     let (world, flen) = scene2::create_scene();
     let camera = camera::Camera::new(flen, 1000, 1000);
     let image = camera.render(&world);
     encode_png(image.clone(), "scene2.png");
 
-    let (world, flen) = scene3::create_scene();
-    let camera = camera::Camera::new(flen, 1000, 1000);
-    let image = camera.render(&world);
-    encode_png(image.clone(), "scene3.png");
+    // let (world, flen) = scene3::create_scene();
+    // let camera = camera::Camera::new(flen, 1000, 1000);
+    // let image = camera.render(&world);
+    // encode_png(image.clone(), "scene3.png");
+
+    // let (world, flen) = scene4::create_scene();
+    // let camera = camera::Camera::new(flen, 1024, 2000);
+    // let image = camera.render(&world);
+    // encode_png(image.clone(), "scene4.png");
 }
 
 fn encode_png(img: Arc<Mutex<DynamicImage>>, filename: &str) {

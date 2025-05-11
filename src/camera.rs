@@ -12,7 +12,7 @@ use crate::{
     vec3::{self, Vec3},
 };
 
-const MAX_DEPTH: u32 = 10;
+const MAX_DEPTH: u32 = 1000;
 const THREADS: usize = 16;
 
 pub struct Camera {
