@@ -13,6 +13,7 @@ pub fn create_scene() -> (HitableList, f32) {
         Material::Metallic(material::Metallic {
             albedo: Vec3::new(1.0, 0.2, 0.2),
             fuzz: 0.4,
+            diffuse: false,
         }),
     )));
 
@@ -22,6 +23,7 @@ pub fn create_scene() -> (HitableList, f32) {
         Material::Metallic(material::Metallic {
             albedo: Vec3::new(0.8, 1.0, 1.0),
             fuzz: 0.0,
+            diffuse: false,
         }),
     )));
 
@@ -76,6 +78,7 @@ pub fn create_scene() -> (HitableList, f32) {
         Material::Metallic(material::Metallic {
             albedo: Vec3::new(1.0, 1.0, 1.0),
             fuzz: 0.2,
+            diffuse: false,
         }),
     );
     // left wall
@@ -87,6 +90,7 @@ pub fn create_scene() -> (HitableList, f32) {
         Material::Metallic(material::Metallic {
             albedo: Vec3::new(0.4, 0.4, 0.4),
             fuzz: 0.5,
+            diffuse: false,
         }),
     );
 

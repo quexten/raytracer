@@ -17,6 +17,7 @@ pub fn create_scene() -> (HitableList, f32) {
             Box::new(Material::Metallic(material::Metallic {
                 albedo: Vec3::new(0.8, 1.0, 1.0),
                 fuzz: 0.2,
+                diffuse: false,
             })),
             15.0,
         ),
@@ -28,6 +29,7 @@ pub fn create_scene() -> (HitableList, f32) {
         Material::Metallic(material::Metallic {
             albedo: Vec3::new(0.8, 0.6, 0.1),
             fuzz: 0.3,
+            diffuse: false,
         }),
     )));
 
@@ -37,19 +39,24 @@ pub fn create_scene() -> (HitableList, f32) {
         Material::Metallic(material::Metallic {
             albedo: Vec3::new(0.9, 0.9, 1.0),
             fuzz: 0.0,
+            diffuse: false,
         }),
     )));
 
     // seeded rand
     let mut seed = [0u8; 32];
-    seed[0] = 0x30;
+    seed[0] = 8;
     let mut rng = rand_chacha::ChaCha8Rng::from_seed(seed);
-    for i in 0..100 {
+    for i in 0..200 {
         let rand_position = Vec3::new(
-            rng.random_range(-5.0..5.0),
-            rng.random_range(-0.5..5.0),
-            rng.random_range(-5.0..5.0),
+            rng.random_range(-10.0..10.0),
+            rng.random_range(-0.5..10.0),
+            rng.random_range(-10.0..10.0),
         );
+        // reject if within 1.0 of center
+        if rand_position.sub(&Vec3::new(0.0, 0.0, -2.0)).length() < 3.0 {
+            continue;
+        }
 
         // metal or glow
         let material = if rng.random_range(0..5) != 0 {
@@ -63,6 +70,7 @@ pub fn create_scene() -> (HitableList, f32) {
                     .multiply(0.5),
                 ),
                 fuzz: rng.random_range(0.0..0.5),
+                diffuse: false,
             })
         } else {
             Material::Light(
@@ -77,7 +85,7 @@ pub fn create_scene() -> (HitableList, f32) {
 
         world.add(Box::new(sphere::Sphere::new(
             Vec3::new(rand_position.x, rand_position.y, rand_position.z),
-            2.5 / (2.0 as f32).powf(rng.random_range(1.0..5.0)),
+            2.0 / (2.0 as f32).powf(rng.random_range(1.0..5.0)),
             material,
         )));
     }
@@ -114,6 +122,7 @@ pub fn create_scene() -> (HitableList, f32) {
             Box::new(Material::Metallic(material::Metallic {
                 albedo: Vec3::new(0.8, 1.0, 1.0),
                 fuzz: 0.2,
+                diffuse: false,
             })),
             5.0,
         ),

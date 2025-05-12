@@ -6,10 +6,12 @@ pub enum Material {
     Light(Vec3),
     Metallic(Metallic),
     CheckerBoard(Box<Material>, Box<Material>, f32),
+    Crazy(),
 }
 
 #[derive(Debug, Clone, Copy)]
 pub struct Metallic {
     pub albedo: Vec3,
     pub fuzz: f32,
+    pub diffuse: bool
 }

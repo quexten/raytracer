@@ -12,13 +12,13 @@ pub fn create_scene() -> (HitableList, f32) {
     world.add(Box::new(sphere::Sphere::new(
         Vec3::new(1.0, -0.1, -1.5),
         0.3,
-        Material::Light(Vec3::new(1.0, 1.0, 1.0).multiply(3.0)),
+        Material::Light(Vec3::new(1.0, 1.0, 1.0).multiply(4.0)),
     )));
 
     world.add(Box::new(sphere::Sphere::new(
         Vec3::new(-1.0, -0.2, -1.5),
         0.3,
-        Material::Light(Vec3::new(0.5, 0.1, 0.0).multiply(4.0)),
+        Material::Crazy()
     )));
 
     fn add_parallelogram(

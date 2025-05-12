@@ -36,6 +36,14 @@ impl Vec3 {
         }
     }
 
+    pub fn multiply_vec(&self, other: &Vec3) -> Vec3 {
+        Vec3 {
+            x: self.x * other.x,
+            y: self.y * other.y,
+            z: self.z * other.z,
+        }
+    }
+
     pub fn divide(&self, scalar: f32) -> Vec3 {
         Vec3 {
             x: self.x / scalar,
@@ -97,5 +105,18 @@ impl Vec3 {
 
     pub fn reflect(&self, normal: &Vec3) -> Vec3 {
         self.sub(&normal.multiply(2.0 * self.dot(normal)))
+    }
+
+    pub fn random_in_unit_disk() -> Vec3 {
+        loop {
+            let p = Vec3::new(
+                util::random_double_range(-1.0, 1.0),
+                util::random_double_range(-1.0, 1.0),
+                0.0,
+            );
+            if p.length_squared() < 1.0 {
+                return p;
+            }
+        }
     }
 }
